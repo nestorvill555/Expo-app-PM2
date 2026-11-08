@@ -1,4 +1,5 @@
 
+import { Picker } from '@react-native-picker/picker';
 import {
   View,
   Text,
@@ -36,12 +37,39 @@ export default function FormularioGasto({
         keyboardType="decimal-pad"
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Categoría"
-        value={categoria}
-        onChangeText={setCategoria}
-      />
+      <View style={styles.selector}>
+        <Picker
+          selectedValue={categoria}
+          onValueChange={setCategoria}
+          enabled={!deshabilitado}
+        >
+          <Picker.Item
+            label="Selecciona una categoría"
+            value=""
+            enabled={false}
+          />
+          <Picker.Item
+            label="Alimentación"
+            value="Alimentación"
+          />
+          <Picker.Item
+            label="Transporte"
+            value="Transporte"
+          />
+          <Picker.Item
+            label="Entretenimiento"
+            value="Entretenimiento"
+          />
+          <Picker.Item
+            label="Salud"
+            value="Salud"
+          />
+          <Picker.Item
+            label="Otros"
+            value="Otros"
+          />
+        </Picker>
+      </View>
 
       <Pressable
         style={[
@@ -79,6 +107,13 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 10,
     fontSize: 15,
+  },
+  selector: {
+    borderWidth: 1,
+    borderColor: '#DDDDDD',
+    borderRadius: 8,
+    marginBottom: 10,
+    justifyContent: 'center',
   },
   boton: {
     backgroundColor: '#53745B',
